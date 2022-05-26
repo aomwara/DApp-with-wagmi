@@ -1,26 +1,26 @@
 import { useProvider, useContractWrite } from "wagmi";
 import useAccounts from "./useAccount";
-import ContractAddress from "../constants/ContractAddress.json";
-import ERC20_ABI from "../constants/BankABI.json";
+import Address from "../constants/Address.json";
+import BANK_ABI from "../constants/BankABI.json";
 
-const useBank = (methods, args) => {
+const useDeposit = (amount) => {
   const { address: userAddress } = useAccounts();
   const provider = useProvider();
   const signer = provider.getSigner(userAddress);
 
   const { data, isError, isLoading, write } = useContractWrite(
     {
-      addressOrName: ContractAddress.Bank,
-      contractInterface: ERC20_ABI,
+      addressOrName: Address.Bank,
+      contractInterface: BANK_ABI,
       signerOrProvider: signer,
     },
     methods,
     {
-      args: args,
+      args: [amount],
     }
   );
 
-  return { data, isError, isLoading, write };
+  return { data, isError, isLoading, handleDeposit: write };
 };
 
-export default useBank;
+export default useDeposit;

@@ -22,7 +22,7 @@ export default function Home() {
 
         <div style={{ paddingTop: "20px" }}> {data?.address}</div>
         <hr />
-        <Link href="/home">
+        <Link href="/deposit">
           <Button color="gradient" auto>
             Launch App
           </Button>
