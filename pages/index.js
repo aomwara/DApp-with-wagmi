@@ -1,7 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
 import { useAccount } from "wagmi";
 
@@ -20,7 +18,7 @@ export default function Home() {
         <h1 className={styles.title} style={{ marginBottom: "20px" }}>
           Welcome to <a href="#">DApp</a>
         </h1>
-        <ConnectButton />
+
         <div style={{ paddingTop: "20px" }}> {data?.address}</div>
         <hr />
         <Link href="/home">Go to Home</Link>
