@@ -1,15 +1,17 @@
-import "../styles/globals.css";
-import "@rainbow-me/rainbowkit/styles.css";
+import { NextUIProvider } from "@nextui-org/react";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import Navbar from "../components/Navbar";
 
+import "../styles/globals.css";
+import "@rainbow-me/rainbowkit/styles.css";
+
 const { chains, provider } = configureChains(
   [chain.kovan],
   [
     jsonRpcProvider({
-      rpc: (chain) => ({
+      rpc: () => ({
         http: `https://kovan.poa.network`,
       }),
     }),
@@ -32,8 +34,10 @@ function MyApp({ Component, pageProps }) {
     <>
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider chains={chains}>
-          <Navbar />
-          <Component {...pageProps} />
+          <NextUIProvider>
+            <Navbar />
+            <Component {...pageProps} />
+          </NextUIProvider>
         </RainbowKitProvider>
       </WagmiConfig>
     </>

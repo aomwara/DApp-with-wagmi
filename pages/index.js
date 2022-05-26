@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import { useAccount } from "wagmi";
+import { Button } from "@nextui-org/react";
 
 export default function Home() {
   const { data } = useAccount();
@@ -16,12 +17,16 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title} style={{ marginBottom: "20px" }}>
-          Welcome to <a href="#">DApp</a>
+          Simple <a href="#">Bank</a>
         </h1>
 
         <div style={{ paddingTop: "20px" }}> {data?.address}</div>
         <hr />
-        <Link href="/home">Go to Home</Link>
+        <Link href="/home">
+          <Button color="gradient" auto>
+            Launch App
+          </Button>
+        </Link>
       </main>
     </div>
   );
