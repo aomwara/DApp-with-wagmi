@@ -12,7 +12,7 @@ const { chains, provider } = configureChains(
   [
     jsonRpcProvider({
       rpc: () => ({
-        http: process.env.RPC,
+        http: "https://kovan.poa.network",
       }),
     }),
   ]

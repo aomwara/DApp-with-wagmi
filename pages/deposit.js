@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { useApprove } from "../hooks/contracts/DAI";
+import useBalance from "../hooks/contracts/DAI/useBalance";
 import useAccounts from "../hooks/useAccount";
 import Address from "../constants/Address.json";
 import { Card, Input, Button } from "@nextui-org/react";
@@ -9,6 +10,8 @@ const Home = () => {
   const { address } = useAccounts();
   const [amount, setAmount] = useState(0);
   const [isLoading, setLoading] = useState(false);
+
+  const { DAIBalance } = useBalance(address);
 
   //create instance for approve
   const { handleApprove, data: approveData } = useApprove(
@@ -36,6 +39,8 @@ const Home = () => {
       <center>
         <h1>Deposit</h1>
         <small> Account: {address}</small>
+        <br />
+        <small>DAI Balance: {DAIBalance?.toString() / 1e18} </small>
 
         <br />
         <Card css={{ mw: "400px", mt: 20, p: 10 }}>
